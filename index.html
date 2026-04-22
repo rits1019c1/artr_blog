@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>同一アート作家 R - Manifesto & Archive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #1a1a1a;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            overflow-x: hidden;
+            scroll-behavior: auto;
+        }
+
+        .serif {
+            font-family: 'Noto Serif JP', serif;
+        }
+
+        /* ナビゲーション */
+        .nav-link {
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            color: #999;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+        .nav-link:hover { color: #000; }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: #1a1a1a;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 4vw, 2.8rem);
+            color: #d1d1d1;
+            font-weight: 300;
+            margin-top: -10px;
+        }
+
+        /* セクション演出 */
+        .section-fade {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+            margin-bottom: 10vh;
+        }
+        .section-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .icon-frame {
+            border: 1px solid #e5e5e5;
+            padding: 20px;
+            display: inline-block;
+            background: #fff;
+        }
+
+        /* 致命的なノイズ・オーバーレイ */
+        #glitch-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 10000;
+            display: none;
+        }
+
+        .noise-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 1;
+        }
+
+        #reset-btn {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: transparent;
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 12px 24px;
+            font-size: 10px;
+            letter-spacing: 0.2em;
+            cursor: pointer;
+            z-index: 10001;
+            transition: all 0.3s;
+        }
+        #reset-btn:hover { background: #fff; color: #000; }
+
+        .input-blank {
+            display: inline-block;
+            min-width: 180px;
+            border-bottom: 1px solid #000;
+            margin: 0 10px;
+            height: 1.2em;
+            vertical-align: bottom;
+        }
+
+        .glitch-text {
+            animation: text-shake 0.05s infinite;
+        }
+
+        @keyframes text-shake {
+            0% { transform: translate(0); }
+            50% { transform: translate(1px, -1px); }
+            100% { transform: translate(-1px, 1px); }
+        }
+
+        .down-arrow {
+            font-size: 1.5rem;
+            color: #eee;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ロック用ノイズ画面 -->
+    <div id="glitch-overlay">
+        <canvas id="noise-canvas" class="noise-canvas"></canvas>
+        <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none p-10 text-center">
+            <div class="text-red-600 font-mono text-xs tracking-[0.5em] uppercase mb-4 glitch-text">
+                FATAL ERROR: LOCAL STORAGE CORRUPTED
+            </div>
+            <div class="text-white font-mono text-[9px] opacity-50">
+                SCROLL LIMIT EXCEEDED. SYSTEM LOCKED.<br>
+                PLEASE RESTORE DATA TO CONTINUE.
+            </div>
+        </div>
+    </div>
+
+    <!-- ヘッダー -->
+    <nav class="fixed top-0 left-0 w-full p-10 flex justify-between items-center bg-white/95 backdrop-blur-sm z-50">
+        <div class="text-3xl font-serif tracking-tighter">R</div>
+        <div class="hidden md:flex space-x-12">
+    </nav>
+
+    <main class="pt-48 px-6">
+        <!-- トップセクション -->
+        <div class="text-center mb-[90vh] section-fade">
+            <div class="icon-frame mb-12">
+                <img src="https://shun240523-stack.github.io/Symbolencyclopedia/symbols/%E7%B5%84%E7%B9%94%E7%95%AA%E5%8F%B7_003.png" 
+                     alt="Icon" class="w-14 h-14 object-contain">
+            </div>
+            <h1 class="hero-title serif mb-2">同一アート作家 R</h1>
+            <p class="hero-subtitle serif mb-16">Manifesto & Archive</p>
+            
+            <div class="max-w-2xl mx-auto border-t border-gray-100 pt-16 mt-16">
+                <p class="text-xl md:text-2xl serif italic mb-6 leading-relaxed">
+                    「一秒一秒大喜利大会だと思って生きろ」
+                </p>
+                <p class="text-[9px] tracking-[0.4em] text-gray-400 uppercase">
+                    EVERY MOMENT IS A CANVAS FOR THE UNEXPECTED.
+                </p>
+            </div>
+            <div class="down-arrow">↓</div>
+        </div>
+
+        <!-- コンテンツエリア -->
+        <article class="max-w-2xl mx-auto">
+            
+            <section class="section-fade">
+                <div class="leading-relaxed text-gray-800">
+                    <p>こんにちはアート作家Rです。</p>
+                    <p>今回は私がどのようにして独創的なアイディアを作れるようになったかを解説します。</p>
+                    <p>皆さんは昔々あるところにお爺さんとお婆さんが住んでました。お爺さんは山に芝刈りにお婆さんは….</p>
+                    <p>時た時次は何を思い浮かべますか？</p>
+                    <p>ほとんどの人は川へ洗濯になど思い浮かべるかと思います。</p>
+                    <p>このように次はどんな言葉が来そうかを予想して考えてるんです。</p>
+                </div>
+            </section>
+
+            <section class="section-fade">
+                <div class="leading-relaxed text-gray-800">
+                    <p>察しの言い方は気づいたかもしれませんがこれはAiとほぼ同じ仕組みです。</p>
+                    <p>Aiなら独創性がないじゃんと思う方もいるかもしれませんが実際は絶対こうはならないという文章を並べて独創性を放つんです。</p>
+                    <div class="p-8 border-l-2 border-black italic bg-gray-50 serif">
+                        「お爺さんは山に芝刈りにお婆さんは鬼ヶ島へ鬼退治に行きました」
+                    </div>
+                    <p>などこういったこと普段してます。</p>
+                </div>
+            </section>
+
+            <section class="section-fade">
+                <div class="leading-relaxed text-gray-800">
+                    <p>基本的には1Tパターンどれぐらいこの時は次どうくるかというのを連想できるようにしておいてます。1Tはおよそ2045年時点でClaude Opus 7.5 の1/3ぐらいの量です。</p>
+                    <p>どのようにトレーニングをしたかというとT.S.という謎の人物がバイナリを喋れるらしいんですよその人のパターンをPyTorchで解析してそれをひたすら暗記して暗唱できるようになってから試してみた結果精度が低かったんですがその精度の低さこそ少し人間味が出るんです。</p>
+                    <div class="bg-gray-100 p-6 font-mono text-sm overflow-x-auto">
+                        -0.000000213<br>
+                        -0.02131233
+                    </div>
+                    <p>なれてきてから次は16進数で覚えました。そうするとより効率よく覚えれるんです。</p>
+                </div>
+            </section>
+
+            <section class="section-fade">
+                <div class="leading-relaxed text-gray-800">
+                    <p>しかし、実際のところは暗記しなくても力自体はあるんです。例えば</p>
+                    <div class="p-10 border border-gray-100 serif italic text-lg leading-loose bg-gray-50/50">
+                        「終日<span class="input-blank"></span>となります。視覚的な違和感を覚える方は、標準視覚プロトコルの彩度調整機能を『レベル4』に設定してください。」
+                    </div>
+                    <p>という文章を見た時( )に当てはまる言葉はなんだと思いますか？</p>
+                    <p>もちろん普通に考えたら「固定エメラルド」になると思いますがちょっと考えを捻らせてみてください。答えはあえて書きません。</p>
+                </div>
+            </section>
+
+            <section class="section-fade">
+                <div class="leading-relaxed text-gray-800">
+                    <p>そしてなれてきたら</p>
+                    <div class="pl-6 border-l border-gray-200">
+                        <p>「こんにちは、お元気ですか？」</p>
+                        <p class="text-gray-400">（半分寝起きの男性）「<span class="input-blank"></span>」</p>
+                    </div>
+                    <p>のような文章でも試してくださいではまたどこかで</p>
+                </div>
+            </section>
+
+            <!-- 巨大な余白（スクロール幅） -->
+            <div class="h-[150vh]"></div>
+
+            <section class="section-fade text-center pb-[50vh]">
+                <p class="text-xs tracking-[1em] text-red-500 uppercase glitch-text">Terminal Point</p>
+                <p class="text-gray-200 text-[10px] mt-4 uppercase">Reached the end of binary logic.</p>
+            </section>
+
+        </article>
+    </main>
+
+    <script>
+        const glitchOverlay = document.getElementById('glitch-overlay');
+        const canvas = document.getElementById('noise-canvas');
+        const ctx = canvas.getContext('2d');
+        const LOCK_KEY = 'art_r_perm_lock';
+
+        // ロック状態チェック
+        if (localStorage.getItem(LOCK_KEY) === 'true') {
+            activateLock();
+        }
+
+        // フェードイン
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.section-fade').forEach(el => observer.observe(el));
+
+        // 激しいノイズ描画
+        function drawNoise() {
+            if (localStorage.getItem(LOCK_KEY) !== 'true') return;
+            
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            const idata = ctx.createImageData(canvas.width, canvas.height);
+            const buffer32 = new Uint32Array(idata.data.buffer);
+            const len = buffer32.length;
+            
+            for (let i = 0; i < len; i++) {
+                if (Math.random() > 0.95) {
+                    buffer32[i] = Math.random() > 0.5 ? 0xFF0000FF : 0xFFFFFF00; // カラーノイズ
+                } else {
+                    const gray = (Math.random() * 255) | 0;
+                    buffer32[i] = (255 << 24) | (gray << 16) | (gray << 8) | gray;
+                }
+            }
+            
+            ctx.putImageData(idata, 0, 0);
+
+            // スキャンライン的な乱れ
+            if (Math.random() > 0.9) {
+                ctx.fillStyle = "rgba(0,0,0,0.5)";
+                ctx.fillRect(0, Math.random() * canvas.height, canvas.width, Math.random() * 100);
+            }
+
+            requestAnimationFrame(drawNoise);
+        }
+
+        function activateLock() {
+            localStorage.setItem(LOCK_KEY, 'true');
+            glitchOverlay.style.display = 'block';
+            drawNoise();
+        }
+
+        // スクロール監視
+        window.addEventListener('scroll', () => {
+            if (localStorage.getItem(LOCK_KEY) === 'true') return;
+
+            const scrollTotal = document.documentElement.scrollHeight - window.innerHeight;
+            if (window.scrollY >= scrollTotal - 5) {
+                activateLock();
+            }
+        });
+
+        // システム復旧（データ消去）
+        function clearLock() {
+            if (confirm("全てのローカルデータを消去し、システムを復旧しますか？")) {
+                localStorage.removeItem(LOCK_KEY);
+                location.reload();
+            }
+        }
+
+        window.onresize = () => {
+            if (localStorage.getItem(LOCK_KEY) === 'true') {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+        };
+    </script>
+</body>
+</html>
