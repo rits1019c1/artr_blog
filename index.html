@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>同一アート作家 R - Manifesto & Archive</title>
+    <meta name="description" content="同一アート作家 R の宣言とアーカイブ。概念と表現の記録。" />
+    <meta property="og:title" content="同一アート作家 R - Manifesto & Archive" />
+    <meta property="og:description" content="同一アート作家 R の宣言とアーカイブ。概念と表現の記録。" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ec2045.github.io/artr_blog/" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@300;400&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --bg-color: #ffffff;
@@ -33,7 +41,10 @@
             text-transform: uppercase;
             transition: color 0.3s;
         }
-        .nav-link:hover { color: #000; }
+
+        .nav-link:hover {
+            color: #000;
+        }
 
         .hero-title {
             font-size: clamp(2.5rem, 8vw, 4.5rem);
@@ -56,6 +67,7 @@
             transition: all 1.5s cubic-bezier(0.16, 1, 0.3, 1);
             margin-bottom: 10vh;
         }
+
         .section-fade.visible {
             opacity: 1;
             transform: translateY(0);
@@ -96,7 +108,7 @@
             transform: translateX(-50%);
             background: transparent;
             color: #fff;
-            border: 1px solid rgba(255,255,255,0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             padding: 12px 24px;
             font-size: 10px;
             letter-spacing: 0.2em;
@@ -104,7 +116,11 @@
             z-index: 10001;
             transition: all 0.3s;
         }
-        #reset-btn:hover { background: #fff; color: #000; }
+
+        #reset-btn:hover {
+            background: #fff;
+            color: #000;
+        }
 
         .input-blank {
             display: inline-block;
@@ -120,9 +136,17 @@
         }
 
         @keyframes text-shake {
-            0% { transform: translate(0); }
-            50% { transform: translate(1px, -1px); }
-            100% { transform: translate(-1px, 1px); }
+            0% {
+                transform: translate(0);
+            }
+
+            50% {
+                transform: translate(1px, -1px);
+            }
+
+            100% {
+                transform: translate(-1px, 1px);
+            }
         }
 
         .down-arrow {
@@ -132,6 +156,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <!-- ロック用ノイズ画面 -->
@@ -158,12 +183,12 @@
         <!-- トップセクション -->
         <div class="text-center mb-[90vh] section-fade">
             <div class="icon-frame mb-12">
-                <img src="https://shun240523-stack.github.io/Symbolencyclopedia/symbols/%E7%B5%84%E7%B9%94%E7%95%AA%E5%8F%B7_003.png" 
-                     alt="Icon" class="w-14 h-14 object-contain">
+                <img src="https://shun240523-stack.github.io/Symbolencyclopedia/symbols/%E7%B5%84%E7%B9%94%E7%95%AA%E5%8F%B7_003.png"
+                    alt="Icon" class="w-14 h-14 object-contain">
             </div>
             <h1 class="hero-title serif mb-2">同一アート作家 R</h1>
             <p class="hero-subtitle serif mb-16">Manifesto & Archive</p>
-            
+
             <div class="max-w-2xl mx-auto border-t border-gray-100 pt-16 mt-16">
                 <p class="text-xl md:text-2xl serif italic mb-6 leading-relaxed">
                     「一秒一秒大喜利大会だと思って生きろ」
@@ -177,7 +202,7 @@
 
         <!-- コンテンツエリア -->
         <article class="max-w-2xl mx-auto">
-            
+
             <section class="section-fade">
                 <div class="leading-relaxed text-gray-800">
                     <p>こんにちはアート作家Rです。</p>
@@ -203,7 +228,8 @@
             <section class="section-fade">
                 <div class="leading-relaxed text-gray-800">
                     <p>基本的には1Tパターンどれぐらいこの時は次どうくるかというのを連想できるようにしておいてます。1Tはおよそ2045年時点でClaude Opus 7.5 の1/3ぐらいの量です。</p>
-                    <p>どのようにトレーニングをしたかというとT.S.という謎の人物がバイナリを喋れるらしいんですよその人のパターンをPyTorchで解析してそれをひたすら暗記して暗唱できるようになってから試してみた結果精度が低かったんですがその精度の低さこそ少し人間味が出るんです。</p>
+                    <p>どのようにトレーニングをしたかというとT.S.という謎の人物がバイナリを喋れるらしいんですよその人のパターンをPyTorchで解析してそれをひたすら暗記して暗唱できるようになってから試してみた結果精度が低かったんですがその精度の低さこそ少し人間味が出るんです。
+                    </p>
                     <div class="bg-gray-100 p-6 font-mono text-sm overflow-x-auto">
                         -0.000000213<br>
                         -0.02131233
@@ -268,14 +294,14 @@
         // 激しいノイズ描画
         function drawNoise() {
             if (localStorage.getItem(LOCK_KEY) !== 'true') return;
-            
+
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-            
+
             const idata = ctx.createImageData(canvas.width, canvas.height);
             const buffer32 = new Uint32Array(idata.data.buffer);
             const len = buffer32.length;
-            
+
             for (let i = 0; i < len; i++) {
                 if (Math.random() > 0.95) {
                     buffer32[i] = Math.random() > 0.5 ? 0xFF0000FF : 0xFFFFFF00; // カラーノイズ
@@ -284,7 +310,7 @@
                     buffer32[i] = (255 << 24) | (gray << 16) | (gray << 8) | gray;
                 }
             }
-            
+
             ctx.putImageData(idata, 0, 0);
 
             // スキャンライン的な乱れ
@@ -328,4 +354,5 @@
         };
     </script>
 </body>
+
 </html>
